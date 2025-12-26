@@ -2,10 +2,11 @@ import mysql from 'mysql2';
 
 // Use a Pool for better stability and concurrency
 const pool = mysql.createPool({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'root',
-    port: 3306,
+    host: process.env.DB_HOST || '127.0.0.1',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'root',
+    database: process.env.DB_NAME || 'rbac_db',
+    port: process.env.DB_PORT || 3306,
     multipleStatements: true,
     waitForConnections: true,
     connectionLimit: 10,
